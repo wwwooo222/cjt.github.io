@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外卖订餐平台</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <div id="login-page" class="page active">
+      <div class="login-container">
+        <div class="logo-wrapper">
+          <div class="logo">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <p class="slogan">好好生活，从每一顿饭开始</p>
+        </div>
+        
+        <div class="form-group">
+          <div class="phone-input">
+            <span class="country-code">+86</span>
+            <input type="tel" id="phone" placeholder="请输入手机号码">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="code-input">
+            <i class="fas fa-shield-alt"></i>
+            <input type="text" id="code" placeholder="请输入验证码">
+            <button class="get-code-btn">获取验证码</button>
+          </div>
+        </div>
+        
+        <button class="login-btn">登录/注册</button>
+        
+        <div class="agreements">
+          <label class="checkbox-label">
+            <input type="checkbox">
+            <span>我已阅读并同意《用户服务协议》、《隐私政策》</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox">
+            <span>我已阅读并同意自动注册账号。</span>
+          </label>
+        </div>
+        
+        <div class="divider">
+          <span>其他登录方式</span>
+        </div>
+        
+        <div class="other-login">
+          <button class="social-btn wechat">
+            <i class="fab fa-weixin"></i>
+            <span>微信</span>
+          </button>
+          <button class="social-btn phone">
+            <i class="fas fa-mobile-alt"></i>
+            <span>本机一键登录</span>
+          </button>
+          <button class="social-btn alipay">
+            <i class="fab fa-alipay"></i>
+            <span>支付宝</span>
+          </button>
+        </div>
+        
+        <div class="guest-mode">
+          <button class="guest-btn">先去逛逛 (游客模式)</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="restaurant-page" class="page">
+      <div class="navbar">
+        <button class="back-btn" onclick="showPage('home-page')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="搜索菜品">
+        </div>
+      </div>
+      
+      <div class="restaurant-header">
+        <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=delicious%20food%20restaurant%20banner%20professional&image_size=landscape_16_9" alt="餐厅">
+        <div class="restaurant-info">
+          <h1>记得吃饭自营店</h1>
+          <div class="rating">
+            <i class="fas fa-star"></i>
+            <span>4.8</span>
+            <span class="month-sale">月售 3000+</span>
+            <span class="delivery-time">约 35 分钟</span>
+          </div>
+          <div class="tags">
+            <span class="tag">满30减5</span>
+            <span class="tag">满60减15</span>
+          </div>
+          <p class="notice">公告：本店所有食材均为每日新鲜配送，请放心食用</p>
+        </div>
+      </div>
+      
+      <div class="menu-container">
+        <div class="menu-categories">
+          <div class="category active" data-category="热销爆款">热销爆款</div>
+          <div class="category" data-category="超值套餐">超值套餐</div>
+          <div class="category" data-category="招牌主食">招牌主食</div>
+          <div class="category" data-category="精选小食">精选小食</div>
+          <div class="category" data-category="清爽饮品">清爽饮品</div>
+        </div>
+        
+        <div class="menu-list">
+          <div class="menu-item">
+            <div class="item-info">
+              <div class="item-header">
+                <i class="fas fa-flame"></i>
+                <h3>招牌黄金猪排饭</h3>
+              </div>
+              <p>外酥里嫩的炸猪排，配上秘制酱汁和新鲜时蔬，是进店必点。</p>
+              <div class="item-meta">
+                <span>月售 1200+</span>
+                <span class="rating-star">98%</span>
+              </div>
+              <div class="item-footer">
+                <span class="price">¥32</span>
+                <button class="add-btn" data-id="1">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=crispy%20fried%20pork%20chop%20rice%20meal%20asian%20food&image_size=square" alt="招牌黄金猪排饭">
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-info">
+              <h3>香脆辣鸡腿堡</h3>
+              <p>大块鸡腿肉经过多次腌制，口感丰富多汁，辣度适中。</p>
+              <div class="item-meta">
+                <span>月售 850+</span>
+                <span class="rating-star">95%</span>
+              </div>
+              <div class="item-footer">
+                <span class="price">¥18</span>
+                <button class="add-btn" data-id="2">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=spicy%20crispy%20chicken%20burger%20fast%20food&image_size=square" alt="香脆辣鸡腿堡">
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-info">
+              <h3>意式经典肉酱面</h3>
+              <p>传统手工宽面，搭配慢火熬制6小时的浓郁肉酱。</p>
+              <div class="item-meta">
+                <span>月售 600+</span>
+                <span class="rating-star">92%</span>
+              </div>
+              <div class="item-footer">
+                <span class="price">¥28</span>
+                <button class="add-btn" data-id="3">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=italian%20spaghetti%20bolognese%20pasta%20food&image_size=square" alt="意式经典肉酱面">
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-info">
+              <h3>鲜果满杯西柚</h3>
+              <p>新鲜红西柚果粒，搭配四季春茶底，清爽解腻。</p>
+              <div class="item-meta">
+                <span>月售 2000+</span>
+                <span class="rating-star">99%</span>
+              </div>
+              <div class="item-footer">
+                <span class="price">¥15</span>
+                <button class="add-btn" data-id="4">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=grapefruit%20fruit%20tea%20fresh%20drink&image_size=square" alt="鲜果满杯西柚">
+          </div>
+        </div>
+      </div>
+      
+      <div class="bottom-bar">
+        <button class="tab-btn" onclick="showPage('home-page')">
+          <i class="fas fa-home"></i>
+          <span>首页</span>
+        </button>
+        <button class="tab-btn" onclick="showPage('orders-page')">
+          <i class="fas fa-file-alt"></i>
+          <span>订单</span>
+        </button>
+        <button class="cart-btn" onclick="showPage('cart-page')">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cart-count">3</span>
+        </button>
+        <button class="tab-btn" onclick="showPage('profile-page')">
+          <i class="fas fa-user"></i>
+          <span>我的</span>
+        </button>
+      </div>
+      
+      <div class="cart-preview">
+        <div class="cart-info">
+          <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge">3</span>
+          </div>
+          <div class="cart-text">
+            <span class="cart-price">¥50.00</span>
+            <span class="original-price">¥65.00</span>
+          </div>
+          <p class="delivery-fee">另需配送费 ¥3 | 已减¥15</p>
+        </div>
+        <button class="checkout-btn" onclick="showPage('cart-page')">去结算</button>
+      </div>
+    </div>
+
+    <div id="cart-page" class="page">
+      <div class="navbar">
+        <button class="back-btn" onclick="showPage('restaurant-page')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>购物车</h1>
+        <button class="clear-cart">清空</button>
+      </div>
+      
+      <div class="address-section">
+        <div class="address-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="address-info">
+            <p class="address-text">北京市朝阳区望京SOHO T3</p>
+            <p class="contact">张大千(先生) 138****8888</p>
+          </div>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+      
+      <div class="cart-content">
+        <div class="store-info">
+          <span class="store-name">商家: 记得吃饭自营店</span>
+          <span class="discount-tag">满40减5</span>
+        </div>
+        
+        <div class="cart-items">
+          <div class="cart-item">
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=braised%20pork%20rice%20chinese%20food&image_size=square" alt="招牌红烧肉盖饭">
+            <div class="item-details">
+              <h3>招牌红烧肉盖饭</h3>
+              <p>大份 / 微辣</p>
+              <div class="price-row">
+                <span class="item-price">¥32.5</span>
+                <div class="quantity-control">
+                  <button class="qty-btn minus" data-id="1">-</button>
+                  <span class="quantity">1</span>
+                  <button class="qty-btn plus" data-id="1">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cart-item">
+            <div class="placeholder-img">
+              <i class="fas fa-image"></i>
+            </div>
+            <div class="item-details">
+              <h3>港式丝滑奶茶</h3>
+              <p>去冰 / 半糖</p>
+              <div class="price-row">
+                <span class="item-price">¥18.0</span>
+                <div class="quantity-control">
+                  <button class="qty-btn minus" data-id="2">-</button>
+                  <span class="quantity">2</span>
+                  <button class="qty-btn plus" data-id="2">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cart-item">
+            <div class="placeholder-img">
+              <i class="fas fa-image"></i>
+            </div>
+            <div class="item-details">
+              <h3>¥18.0</h3>
+              <p></p>
+              <div class="price-row">
+                <span class="item-price">¥18.0</span>
+                <div class="quantity-control">
+                  <button class="qty-btn minus" data-id="3">-</button>
+                  <span class="quantity">2</span>
+                  <button class="qty-btn plus" data-id="3">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cart-item">
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=crispy%20fried%20chicken%20fillet%20food&image_size=square" alt="香脆炸鸡排">
+            <div class="item-details">
+              <h3>香脆炸鸡排</h3>
+              <p>原味</p>
+              <div class="price-row">
+                <span class="item-price">¥15.0</span>
+                <div class="quantity-control">
+                  <button class="qty-btn minus" data-id="4">-</button>
+                  <span class="quantity">1</span>
+                  <button class="qty-btn plus" data-id="4">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="coupon-section">
+          <div class="coupon-row">
+            <i class="fas fa-ticket-alt"></i>
+            <span>优惠券</span>
+            <span class="coupon-count">2张可用</span>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="coupon-row">
+            <i class="fas fa-coins"></i>
+            <span>积分抵现</span>
+            <span>共1500积分，可抵¥15</span>
+            <label class="toggle">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="price-section">
+          <div class="price-row">
+            <span>商品小计</span>
+            <span>¥83.50</span>
+          </div>
+          <div class="price-row">
+            <span>包装费</span>
+            <span>¥4.00</span>
+          </div>
+          <div class="price-row">
+            <span>包装费</span>
+            <span>¥4.00</span>
+          </div>
+          <div class="price-row">
+            <span>配送费</span>
+            <span>¥3.50</span>
+          </div>
+          <div class="price-row discount">
+            <span>满减优惠</span>
+            <span>-¥5.00</span>
+          </div>
+          <div class="total-row">
+            <span>合计</span>
+            <span>¥86.00</span>
+          </div>
+        </div>
+        
+        <p class="order-note">下单后请保持手机畅通，骑手将通过虚拟号码联系您。</p>
+      </div>
+      
+      <div class="bottom-bar">
+        <button class="tab-btn" onclick="showPage('home-page')">
+          <i class="fas fa-home"></i>
+          <span>首页</span>
+        </button>
+        <button class="tab-btn" onclick="showPage('orders-page')">
+          <i class="fas fa-file-alt"></i>
+          <span>订单</span>
+        </button>
+        <button class="cart-btn active" onclick="showPage('cart-page')">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">4</span>
+        </button>
+        <button class="tab-btn" onclick="showPage('profile-page')">
+          <i class="fas fa-user"></i>
+          <span>我的</span>
+        </button>
+      </div>
+      
+      <div class="checkout-bar">
+        <div class="total-info">
+          <p class="discount-hint">已优惠¥5</p>
+          <div class="final-price">
+            <span>¥86.00</span>
+          </div>
+          <p class="price-note">含包装费、配送费</p>
+        </div>
+        <button class="checkout-btn" onclick="showPage('checkout-page')">去结算</button>
+      </div>
+    </div>
+
+    <div id="checkout-page" class="page">
+      <div class="navbar">
+        <button class="back-btn" onclick="showPage('cart-page')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>确认订单</h1>
+        <button class="more-btn">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
+      </div>
+      
+      <div class="delivery-tabs">
+        <button class="delivery-tab active">外卖配送</button>
+        <button class="delivery-tab">到店自取</button>
+      </div>
+      
+      <div class="address-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="address-info">
+          <p class="address-text">广东省深圳市南山区粤海街道科苑路15号深港产学研基地5楼</p>
+          <p class="contact">张先生 138****8888</p>
+        </div>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+      
+      <div class="delivery-time">
+        <i class="fas fa-clock"></i>
+        <span>送达时间</span>
+        <span class="estimated">预计 12:45 送达</span>
+      </div>
+      
+      <div class="order-section">
+        <div class="restaurant-title">
+          <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=restaurant%20logo%20tai%20er%20pickled%20fish&image_size=square" alt="太二酸菜鱼">
+          <span>太二酸菜鱼（万象城店）</span>
+        </div>
+        
+        <div class="order-items">
+          <div class="order-item">
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=sour%20fish%20chinese%20cuisine%20tai%20er&image_size=square" alt="老坛子酸菜鱼">
+            <div class="item-info">
+              <h3>老坛子酸菜鱼（2人份）</h3>
+              <span class="quantity">x1</span>
+            </div>
+            <span class="price">¥98</span>
+          </div>
+          
+          <div class="order-item">
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=cucumber%20salad%20chinese%20cold%20dish&image_size=square" alt="脆椒小皮蛋">
+            <div class="item-info">
+              <h3>脆椒小皮蛋</h3>
+              <span class="quantity">x1</span>
+            </div>
+            <span class="price">¥18</span>
+          </div>
+          
+          <div class="order-item">
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=steamed%20rice%20bowl%20asian%20food&image_size=square" alt="米饭">
+            <div class="item-info">
+              <h3>米饭</h3>
+              <span class="quantity">x2</span>
+            </div>
+            <span class="price">¥4</span>
+          </div>
+        </div>
+        
+        <div class="price-details">
+          <div class="price-row">
+            <span>包装费</span>
+            <span>¥3</span>
+          </div>
+          <div class="price-row">
+            <span>配送费</span>
+            <span>¥5</span>
+          </div>
+          <div class="price-row discount">
+            <i class="fas fa-ticket-alt"></i>
+            <span>红包/抵用券</span>
+            <span>-¥15</span>
+          </div>
+          <div class="total-row">
+            <span>合计</span>
+            <span>¥113</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="payment-section">
+        <h3>选择支付方式</h3>
+        <div class="payment-options">
+          <button class="payment-option active">
+            <div class="payment-icon alipay">
+              <i class="fab fa-alipay"></i>
+            </div>
+            <span>支付宝支付</span>
+            <i class="fas fa-check-circle"></i>
+          </button>
+          <button class="payment-option">
+            <div class="payment-icon wechat">
+              <i class="fab fa-weixin"></i>
+            </div>
+            <span>微信支付</span>
+          </button>
+          <button class="payment-option">
+            <div class="payment-icon bank">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <span>银行卡支付</span>
+          </button>
+          <button class="payment-option">
+            <div class="payment-icon card">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <span>银行卡支付</span>
+          </button>
+        </div>
+        <p class="security-hint">
+          <i class="fas fa-shield-alt"></i>
+          支付安全保护中
+        </p>
+      </div>
+      
+      <div class="bottom-bar checkout-bottom">
+        <div class="total-price">
+          <span class="label">合计</span>
+          <span class="amount">¥113</span>
+          <span class="original">¥128</span>
+        </div>
+        <button class="pay-btn" onclick="showPage('orders-page')">立即支付</button>
+      </div>
+    </div>
+
+    <div id="orders-page" class="page">
+      <div class="navbar">
+        <h1>订单配送</h1>
+        <button class="more-btn">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
+      </div>
+      
+      <div class="delivery-map">
+        <div class="map-placeholder">
+          <div class="route">
+            <div class="route-start">
+              <i class="fas fa-store"></i>
+            </div>
+            <div class="route-line"></div>
+            <div class="route-end">
+              <i class="fas fa-home"></i>
+            </div>
+          </div>
+        </div>
+        <button class="locate-btn">
+          <i class="fas fa-location-arrow"></i>
+        </button>
+      </div>
+      
+      <div class="delivery-info">
+        <div class="delivery-status">
+          <div class="status-header">
+            <h2>预计 12:35 送达</h2>
+            <span class="status-badge">配送中</span>
+          </div>
+          <p>餐厅正在奋力备餐中</p>
+        </div>
+        
+        <div class="progress-bar">
+          <div class="progress-step active">
+            <div class="step-dot"></div>
+            <span>已下单</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step active">
+            <div class="step-dot"></div>
+            <span>待取餐</span>
+          </div>
+          <div class="progress-line active"></div>
+          <div class="progress-step active">
+            <div class="step-dot current"></div>
+            <span>配送中</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step">
+            <div class="step-dot"></div>
+            <span>准时达</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="rider-info">
+        <div class="rider-avatar">
+          <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=delivery%20man%20portrait%20professional&image_size=square" alt="骑手">
+          <span class="online-dot"></span>
+        </div>
+        <div class="rider-details">
+          <h3>骑手 张师傅</h3>
+          <p>已为您配送 2541 单</p>
+        </div>
+        <div class="rider-actions">
+          <button class="action-btn chat">
+            <i class="fas fa-comment"></i>
+          </button>
+          <button class="action-btn call">
+            <i class="fas fa-phone"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="order-details-section">
+        <div class="section-header">
+          <h3>订单详情</h3>
+          <button class="view-detail">查看详情</button>
+        </div>
+        
+        <div class="order-items">
+          <div class="order-item">
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=braised%20pork%20rice%20bowl%20chinese%20food&image_size=square" alt="招牌红烧肉盖饭">
+            <div class="item-info">
+              <h4>招牌红烧肉盖饭</h4>
+              <span class="quantity">x1</span>
+            </div>
+            <span class="price">¥32</span>
+          </div>
+          
+          <div class="order-item">
+            <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=plum%20juice%20drink%20chinese%20style&image_size=square" alt="秘制酸梅汤">
+            <div class="item-info">
+              <h4>秘制酸梅汤</h4>
+              <span class="quantity">x2</span>
+            </div>
+            <span class="price">¥16</span>
+          </div>
+        </div>
+        
+        <div class="order-summary">
+          <div class="summary-row">
+            <span class="label">环保餐具模式</span>
+            <span class="value">实付 ¥48.00</span>
+          </div>
+        </div>
+        
+        <div class="delivery-address">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="address-info">
+            <p>北京市朝阳区望京SOHO T3 2102</p>
+            <p>李先生 138****8888</p>
+          </div>
+        </div>
+        
+        <div class="order-number">
+          <span>订单号: 2023081512345678</span>
+          <button class="copy-btn">复制</button>
+        </div>
+        <div class="order-number">
+          <span>订单号: 2023081512345678</span>
+          <button class="copy-btn">复制</button>
+        </div>
+      </div>
+      
+      <div class="bottom-bar">
+        <button class="tab-btn" onclick="showPage('home-page')">
+          <i class="fas fa-home"></i>
+          <span>首页</span>
+        </button>
+        <button class="tab-btn active" onclick="showPage('orders-page')">
+          <i class="fas fa-file-alt"></i>
+          <span>订单</span>
+        </button>
+        <button class="cart-btn" onclick="showPage('cart-page')">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">4</span>
+        </button>
+        <button class="tab-btn" onclick="showPage('profile-page')">
+          <i class="fas fa-user"></i>
+          <span>我的</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="home-page" class="page">
+      <div class="header">
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>北京</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="搜索美食、餐厅">
+        </div>
+      </div>
+      
+      <div class="banner">
+        <div class="banner-slide">
+          <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=delicious%20food%20banner%20promotion%20colorful&image_size=landscape_16_9" alt="美食推荐">
+        </div>
+        <div class="banner-indicators">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      
+      <div class="categories">
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-hamburger"></i>
+          </div>
+          <span>快餐便当</span>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <span>中式美食</span>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-pizza-slice"></i>
+          </div>
+          <span>西餐料理</span>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-soup"></i>
+          </div>
+          <span>汤粥粉面</span>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-coffee"></i>
+          </div>
+          <span>甜点饮品</span>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-ice-cream"></i>
+          </div>
+          <span>甜品蛋糕</span>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-wine-glass"></i>
+          </div>
+          <span>酒水饮料</span>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <span>素食健康</span>
+        </div>
+      </div>
+      
+      <div class="section-header">
+        <h2>推荐商家</h2>
+        <button class="view-all">查看全部</button>
+      </div>
+      
+      <div class="restaurant-list">
+        <div class="restaurant-card" onclick="showPage('restaurant-page')">
+          <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=modern%20chinese%20restaurant%20exterior%20professional&image_size=square" alt="餐厅">
+          <div class="restaurant-content">
+            <h3>记得吃饭自营店</h3>
+            <div class="rating-row">
+              <i class="fas fa-star"></i>
+              <span>4.8</span>
+              <span class="separator">|</span>
+              <span>月售 3000+</span>
+            </div>
+            <div class="delivery-info">
+              <span class="delivery-fee">¥3 配送费</span>
+              <span class="delivery-time">35分钟</span>
+            </div>
+            <div class="tags">
+              <span class="tag">满30减5</span>
+              <span class="tag">满60减15</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="restaurant-card">
+          <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=japanese%20sushi%20restaurant%20clean%20modern&image_size=square" alt="餐厅">
+          <div class="restaurant-content">
+            <h3>和风寿司</h3>
+            <div class="rating-row">
+              <i class="fas fa-star"></i>
+              <span>4.9</span>
+              <span class="separator">|</span>
+              <span>月售 2000+</span>
+            </div>
+            <div class="delivery-info">
+              <span class="delivery-fee">¥5 配送费</span>
+              <span class="delivery-time">40分钟</span>
+            </div>
+            <div class="tags">
+              <span class="tag">新店特惠</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="restaurant-card">
+          <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=italian%20pizza%20restaurant%20cozy%20warm&image_size=square" alt="餐厅">
+          <div class="restaurant-content">
+            <h3>罗马披萨</h3>
+            <div class="rating-row">
+              <i class="fas fa-star"></i>
+              <span>4.7</span>
+              <span class="separator">|</span>
+              <span>月售 1500+</span>
+            </div>
+            <div class="delivery-info">
+              <span class="delivery-fee">¥4 配送费</span>
+              <span class="delivery-time">30分钟</span>
+            </div>
+            <div class="tags">
+              <span class="tag">满50减10</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="restaurant-card">
+          <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=chinese%20noodle%20shop%20traditional&image_size=square" alt="餐厅">
+          <div class="restaurant-content">
+            <h3>老北京炸酱面</h3>
+            <div class="rating-row">
+              <i class="fas fa-star"></i>
+              <span>4.6</span>
+              <span class="separator">|</span>
+              <span>月售 1800+</span>
+            </div>
+            <div class="delivery-info">
+              <span class="delivery-fee">¥3 配送费</span>
+              <span class="delivery-time">25分钟</span>
+            </div>
+            <div class="tags">
+              <span class="tag">老字号</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bottom-bar">
+        <button class="tab-btn active" onclick="showPage('home-page')">
+          <i class="fas fa-home"></i>
+          <span>首页</span>
+        </button>
+        <button class="tab-btn" onclick="showPage('orders-page')">
+          <i class="fas fa-file-alt"></i>
+          <span>订单</span>
+        </button>
+        <button class="cart-btn" onclick="showPage('cart-page')">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">4</span>
+        </button>
+        <button class="tab-btn" onclick="showPage('profile-page')">
+          <i class="fas fa-user"></i>
+          <span>我的</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="profile-page" class="page">
+      <div class="profile-header">
+        <div class="user-info">
+          <div class="avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <h2>美食达人</h2>
+            <p>138****8888</p>
+          </div>
+          <button class="edit-btn">
+            <i class="fas fa-cog"></i>
+          </button>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-value">12</span>
+            <span class="stat-label">优惠券</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">1500</span>
+            <span class="stat-label">积分</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">5</span>
+            <span class="stat-label">收藏</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">23</span>
+            <span class="stat-label">足迹</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="order-section">
+        <div class="section-header">
+          <h3>我的订单</h3>
+          <button class="view-all">全部订单</button>
+        </div>
+        <div class="order-tabs">
+          <div class="order-tab">
+            <i class="fas fa-shopping-bag"></i>
+            <span>待付款</span>
+            <span class="badge">2</span>
+          </div>
+          <div class="order-tab">
+            <i class="fas fa-clock"></i>
+            <span>待配送</span>
+            <span class="badge">1</span>
+          </div>
+          <div class="order-tab">
+            <i class="fas fa-home"></i>
+            <span>待收货</span>
+          </div>
+          <div class="order-tab">
+            <i class="fas fa-star"></i>
+            <span>待评价</span>
+          </div>
+          <div class="order-tab">
+            <i class="fas fa-redo"></i>
+            <span>退款/售后</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-section">
+        <div class="menu-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>收货地址</span>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-ticket-alt"></i>
+          <span>优惠券</span>
+          <span class="menu-badge">12张可用</span>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-heart"></i>
+          <span>我的收藏</span>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-history"></i>
+          <span>浏览足迹</span>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-headphones-alt"></i>
+          <span>客服中心</span>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-info-circle"></i>
+          <span>关于我们</span>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+      
+      <div class="bottom-bar">
+        <button class="tab-btn" onclick="showPage('home-page')">
+          <i class="fas fa-home"></i>
+          <span>首页</span>
+        </button>
+        <button class="tab-btn" onclick="showPage('orders-page')">
+          <i class="fas fa-file-alt"></i>
+          <span>订单</span>
+        </button>
+        <button class="cart-btn" onclick="showPage('cart-page')">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">4</span>
+        </button>
+        <button class="tab-btn active" onclick="showPage('profile-page')">
+          <i class="fas fa-user"></i>
+          <span>我的</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>
